@@ -432,7 +432,7 @@ function App() {
 
   // Main app interface
   return (
-    <div className="min-h-screen bg-dark-300 relative">
+    <div className="relative">
       {/* Main Content */}
       {currentView === 'feed' && (
         <EnhancedVideoFeed 
