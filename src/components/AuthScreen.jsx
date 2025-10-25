@@ -73,67 +73,73 @@ const AuthScreen = ({ auth, onAuthSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-dark-300 via-dark-200 to-dark-300 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-blob"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="max-w-md w-full relative z-10">
         {/* Welcome Screen */}
         {step === 'welcome' && (
-          <div className="bg-dark-200/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/10">
+          <div className="bg-black/40 backdrop-blur-2xl rounded-3xl p-8 shadow-2xl border border-white/20">
             {/* Logo and Header */}
             <div className="text-center mb-8">
               <div className="relative mb-6">
-                <div className="w-20 h-20 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-2xl shadow-blue-500/50">
                   <Sparkles className="w-10 h-10 text-white" />
                 </div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-accent rounded-full animate-ping"></div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-teal-400 rounded-full animate-ping"></div>
               </div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-2">
+              <h1 className="text-4xl font-black bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent mb-2">
                 SkilSnap
               </h1>
-              <p className="text-gray-400 text-lg">Learn Skills, Hire Experts</p>
+              <p className="text-gray-300 text-lg font-medium">Learn Skills, Hire Experts</p>
             </div>
 
             {/* Feature Highlights */}
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center space-x-3 p-3 bg-primary/10 rounded-lg border border-primary/20">
-                <Zap className="w-5 h-5 text-primary" />
-                <span className="text-white text-sm">Quick skill tutorials</span>
+            <div className="space-y-3 mb-8">
+              <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-xl border border-blue-500/30 hover:border-blue-400/50 transition-all">
+                <div className="p-2 bg-blue-500/20 rounded-lg">
+                  <Zap className="w-5 h-5 text-blue-400" />
+                </div>
+                <span className="text-white text-sm font-medium">Quick skill tutorials</span>
               </div>
-              <div className="flex items-center space-x-3 p-3 bg-secondary/10 rounded-lg border border-secondary/20">
-                <Users className="w-5 h-5 text-secondary" />
-                <span className="text-white text-sm">Connect with local experts</span>
+              <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-teal-500/10 to-emerald-500/10 rounded-xl border border-teal-500/30 hover:border-teal-400/50 transition-all">
+                <div className="p-2 bg-teal-500/20 rounded-lg">
+                  <Users className="w-5 h-5 text-teal-400" />
+                </div>
+                <span className="text-white text-sm font-medium">Connect with local experts</span>
               </div>
-              <div className="flex items-center space-x-3 p-3 bg-accent/10 rounded-lg border border-accent/20">
-                <Award className="w-5 h-5 text-accent" />
-                <span className="text-white text-sm">Earn V-Coins for expertise</span>
+              <div className="flex items-center space-x-3 p-4 bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-xl border border-amber-500/30 hover:border-amber-400/50 transition-all">
+                <div className="p-2 bg-amber-500/20 rounded-lg">
+                  <Award className="w-5 h-5 text-amber-400" />
+                </div>
+                <span className="text-white text-sm font-medium">Earn V-Coins for expertise</span>
               </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="space-y-4">
+            <div className="space-y-3">
               <button
                 onClick={() => setStep('phone')}
-                className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 text-white font-semibold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl shadow-blue-500/50"
               >
                 Get Started with Phone
               </button>
-              
+
               <button
                 onClick={handleAnonymousSignIn}
                 disabled={loading}
-                className="w-full bg-dark-100/50 hover:bg-dark-100 text-gray-300 hover:text-white font-medium py-4 rounded-xl transition-all duration-300 border border-gray-600 hover:border-gray-500 disabled:opacity-50"
+                className="w-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white font-semibold py-4 rounded-xl transition-all duration-300 border border-white/20 hover:border-white/30 disabled:opacity-50"
               >
                 {loading ? 'Signing in...' : 'Continue as Guest'}
               </button>
             </div>
 
-            <p className="text-center text-gray-500 text-xs mt-6">
+            <p className="text-center text-gray-400 text-xs mt-6 font-medium">
               By continuing, you agree to our Terms of Service
             </p>
           </div>

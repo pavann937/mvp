@@ -34,14 +34,15 @@ const CreatorProfile = ({ userProfile, currentUser, onUpload }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-dark-300 to-dark-200 pb-20">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pb-20">
       {/* Header */}
       <div className="relative">
         {/* Cover Image */}
-        <div className="h-48 bg-gradient-to-r from-primary via-secondary to-accent relative overflow-hidden">
-          <div className="absolute inset-0 bg-black/20"></div>
+        <div className="h-48 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 relative overflow-hidden">
+          <div className="absolute inset-0 bg-black/30"></div>
+          <div className="absolute inset-0" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }}></div>
           <div className="absolute top-4 right-4">
-            <button className="p-2 bg-black/30 backdrop-blur-sm rounded-full">
+            <button className="p-2.5 bg-black/50 backdrop-blur-md rounded-xl border border-white/20 hover:bg-black/70 transition-all">
               <Settings className="w-5 h-5 text-white" />
             </button>
           </div>
@@ -52,12 +53,12 @@ const CreatorProfile = ({ userProfile, currentUser, onUpload }) => {
           <div className="flex items-end space-x-4 mb-4">
             {/* Profile Picture */}
             <div className="relative">
-              <div className="w-24 h-24 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center ring-4 ring-dark-300 shadow-xl">
+              <div className="w-24 h-24 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-2xl flex items-center justify-center ring-4 ring-slate-900 shadow-2xl">
                 <span className="text-3xl font-bold text-white">
                   {userProfile?.name?.charAt(0) || 'G'}
                 </span>
               </div>
-              <button className="absolute -bottom-2 -right-2 p-2 bg-accent rounded-full shadow-lg">
+              <button className="absolute -bottom-2 -right-2 p-2 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full shadow-xl border-2 border-slate-900">
                 <Camera className="w-4 h-4 text-white" />
               </button>
             </div>
@@ -65,7 +66,7 @@ const CreatorProfile = ({ userProfile, currentUser, onUpload }) => {
             {/* Edit Button */}
             <button
               onClick={() => setShowEditModal(true)}
-              className="mb-2 px-4 py-2 bg-primary/20 border border-primary/30 rounded-xl text-primary font-medium transition-all hover:bg-primary/30"
+              className="mb-2 px-4 py-2 bg-blue-500/20 border border-blue-500/40 rounded-xl text-blue-400 font-semibold transition-all hover:bg-blue-500/30 hover:border-blue-400/60"
             >
               <Edit3 className="w-4 h-4 inline mr-2" />
               Edit Profile
@@ -90,14 +91,14 @@ const CreatorProfile = ({ userProfile, currentUser, onUpload }) => {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
+          <div className="grid grid-cols-4 gap-3 mb-6">
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <div key={index} className="bg-dark-200/50 backdrop-blur-sm rounded-xl p-4 text-center border border-white/5">
-                  <Icon className={`w-5 h-5 mx-auto mb-2 ${stat.color}`} />
-                  <div className="text-white font-bold text-lg">{stat.value}</div>
-                  <div className="text-gray-400 text-xs">{stat.label}</div>
+                <div key={index} className="bg-black/40 backdrop-blur-xl rounded-xl p-3 text-center border border-white/10 hover:border-white/20 transition-all">
+                  <Icon className={`w-5 h-5 mx-auto mb-1.5 ${stat.color}`} />
+                  <div className="text-white font-bold text-base">{stat.value}</div>
+                  <div className="text-gray-400 text-[10px] font-medium">{stat.label}</div>
                 </div>
               );
             })}
@@ -105,33 +106,33 @@ const CreatorProfile = ({ userProfile, currentUser, onUpload }) => {
 
           {/* Achievements */}
           <div className="mb-6">
-            <h3 className="text-white font-semibold mb-3 flex items-center">
-              <Award className="w-5 h-5 mr-2 text-accent" />
+            <h3 className="text-white font-bold mb-3 flex items-center text-base">
+              <Award className="w-5 h-5 mr-2 text-amber-400" />
               Achievements
             </h3>
             <div className="space-y-2">
               {achievements.map((achievement, index) => (
                 <div
                   key={index}
-                  className={`flex items-center justify-between p-3 rounded-lg border ${
+                  className={`flex items-center justify-between p-3.5 rounded-xl border transition-all ${
                     achievement.earned
-                      ? 'bg-accent/10 border-accent/20 text-white'
-                      : 'bg-gray-800/30 border-gray-700 text-gray-500'
+                      ? 'bg-gradient-to-r from-amber-500/10 to-orange-500/10 border-amber-500/30 text-white hover:border-amber-400/50'
+                      : 'bg-black/30 border-white/10 text-gray-500'
                   }`}
                 >
                   <div className="flex items-center space-x-3">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      achievement.earned ? 'bg-accent/20' : 'bg-gray-700'
+                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+                      achievement.earned ? 'bg-amber-500/20' : 'bg-white/5'
                     }`}>
                       <Award className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="font-medium">{achievement.title}</div>
+                      <div className="font-semibold text-sm">{achievement.title}</div>
                       <div className="text-xs opacity-70">{achievement.level} Level</div>
                     </div>
                   </div>
                   {achievement.earned && (
-                    <div className="text-accent text-sm font-medium">Earned</div>
+                    <div className="text-amber-400 text-xs font-bold">Earned</div>
                   )}
                 </div>
               ))}
@@ -139,22 +140,22 @@ const CreatorProfile = ({ userProfile, currentUser, onUpload }) => {
           </div>
 
           {/* Earnings Summary */}
-          <div className="bg-gradient-to-r from-accent/10 to-yellow-500/10 rounded-xl p-4 border border-accent/20 mb-6">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-white font-semibold flex items-center">
-                <TrendingUp className="w-5 h-5 mr-2 text-accent" />
+          <div className="bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-red-500/10 rounded-xl p-5 border border-amber-500/30 mb-6 hover:border-amber-400/50 transition-all">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-white font-bold flex items-center text-base">
+                <TrendingUp className="w-5 h-5 mr-2 text-amber-400" />
                 Earnings Overview
               </h3>
-              <span className="text-accent text-sm">This Month</span>
+              <span className="text-amber-400 text-xs font-bold bg-amber-500/20 px-2.5 py-1 rounded-lg">This Month</span>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div>
-                <div className="text-2xl font-bold text-white">{userProfile?.vCoins || 0}</div>
-                <div className="text-gray-400 text-sm">V-Coins Earned</div>
+              <div className="bg-black/30 rounded-lg p-3 border border-white/10">
+                <div className="text-2xl font-black text-white">{userProfile?.vCoins || 0}</div>
+                <div className="text-gray-400 text-xs font-medium mt-1">V-Coins Earned</div>
               </div>
-              <div>
-                <div className="text-2xl font-bold text-white">₹2,450</div>
-                <div className="text-gray-400 text-sm">Estimated Value</div>
+              <div className="bg-black/30 rounded-lg p-3 border border-white/10">
+                <div className="text-2xl font-black text-white">₹2,450</div>
+                <div className="text-gray-400 text-xs font-medium mt-1">Estimated Value</div>
               </div>
             </div>
           </div>
@@ -163,7 +164,7 @@ const CreatorProfile = ({ userProfile, currentUser, onUpload }) => {
           {userProfile?.isGuru && (
             <button
               onClick={onUpload}
-              className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 text-white font-semibold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg mb-6"
+              className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl shadow-blue-500/50 mb-6"
             >
               <Camera className="w-5 h-5 inline mr-2" />
               Create New Video
