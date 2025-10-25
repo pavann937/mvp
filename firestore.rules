@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // SkilSnap MVP Security Rules
+    match /artifacts/{appId} {
+      
+      // User profiles - private data
+      match /users/{userId}/profiles/{profileId} {
+        // Users can read/write their own profile
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+      
+      // Public data collection
+      match /public/data/{document=**} {
+        
+        // Videos collection - public read, authenticated write
+        match /videos/{videoId} {
+          // Anyone can read videos (for the feed)
+          allow read: if true;
+          
+          // Only authenticated users can create videos
+          allow create: if request.auth != null 
+            && request.auth.uid == resource.data.userId;
+          
+          // Only video creator can update their videos
+          allow update: if request.auth != null 
+            && request.auth.uid == resource.data.userId;
+          
+          // Only video creator can delete their videos
+          allow delete: if request.auth != null 
+            && request.auth.uid == resource.data.userId;
+        }
+      }
+    }
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+    
+    function isValidVideoData() {
+      return request.resource.data.keys().hasAll(['userId', 'title', 'skillTag']) 
+        && request.resource.data.userId == request.auth.uid;
+    }
+    
+    function isValidProfileData() {
+      return request.resource.data.keys().hasAll(['name', 'isGuru', 'vCoins'])
+        && request.resource.data.vCoins >= 0;
+    }
+  }
+}
